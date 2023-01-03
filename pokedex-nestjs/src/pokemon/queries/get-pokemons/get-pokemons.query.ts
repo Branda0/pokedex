@@ -1,3 +1,5 @@
+import { GetPokemonsDto } from 'src/pokemon/dto/getPokemons.dto';
+
 export class GetPokemonsQuery {
   limit: number;
   offset: number;
@@ -5,7 +7,7 @@ export class GetPokemonsQuery {
   pokemonId: number;
   pokemonName: string;
 
-  constructor(props: GetPokemonQueryProps) {
+  constructor(props: GetPokemonsDto) {
     this.limit = props?.limit || 9;
     this.pokemonId = props.pokemonId || null;
     this.pokemonName = props.pokemonName || null;
@@ -13,13 +15,10 @@ export class GetPokemonsQuery {
     this.offset = props.page ? (props.page - 1) * this.limit : 0;
   }
 }
-// export class GetPokemonsQuery {
-//   constructor(public readonly pokemonId: number) {}
-// }
 
-export type GetPokemonQueryProps = {
-  limit?: number;
-  page?: number;
-  pokemonId?: number;
-  pokemonName?: string;
-};
+// export type GetPokemonsQueryProps = {
+//   limit: number;
+//   page: number;
+//   pokemonId: number;
+//   pokemonName: string;
+// };
