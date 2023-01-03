@@ -1,13 +1,24 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { GetPokemonsQuery } from './get-pokemons.query';
+import { GetPokemonsQuery, GetPokemonQueryProps } from './get-pokemons.query';
+import { PokemonApiService } from 'src/pokemon/api/pokemon.api.service';
 
 @QueryHandler(GetPokemonsQuery)
 export class GetPokemonsHandler implements IQueryHandler<GetPokemonsQuery> {
-  // constructor(private readonly test) {}
+  constructor(private readonly pokemonApiService: PokemonApiService) {}
 
-  async execute(query: GetPokemonsQuery): Promise<string> {
-    const { pokemonId } = query;
+  async execute(query: GetPokemonsQuery): Promise<any> {
+    const { pokemonId, limit, page, offset } = query;
 
-    return `hello pika ${pokemonId}`;
+    console.log({ query });
+
+    // get one pokemon
+    if (pokemonId) {
+      const res = this.pokemonApiService.getPokemon(query);
+      return await res;
+    }
+
+    // get list of pokemons
+    const res = this.pokemonApiService.getPokemonList(query);
+    return await res;
   }
 }
