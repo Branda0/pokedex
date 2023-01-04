@@ -15,10 +15,3 @@ export class GetPokemonsQuery {
     this.offset = props.page ? (props.page - 1) * this.limit : 0;
   }
 }
-
-// export type GetPokemonsQueryProps = {
-//   limit: number;
-//   page: number;
-//   pokemonId: number;
-//   pokemonName: string;
-// };
