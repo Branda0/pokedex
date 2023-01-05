@@ -17,7 +17,7 @@ export class GetPokemonsHandler implements IQueryHandler<GetPokemonsQuery> {
         await this.pokemonApiService.getPokemonList(query);
 
       const pokemonPromises = pokemonList.result.reduce((acc, pokemonItem) => {
-        if (pokemonItem.id < MAX_POKEMON) {
+        if (pokemonItem.id <= MAX_POKEMON) {
           acc.push(this.pokemonApiService.getPokemon(pokemonItem.id));
         }
         return acc;
