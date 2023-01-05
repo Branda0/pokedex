@@ -11,13 +11,17 @@ export class GetPokemonsHandler implements IQueryHandler<GetPokemonsQuery> {
   constructor(private readonly pokemonApiService: PokemonApiService) {}
 
   async execute(query: GetPokemonsQuery): Promise<PokemonList> {
+    const MAX_POKEMON = 905;
     try {
       const pokemonList: PokemonResultList =
         await this.pokemonApiService.getPokemonList(query);
 
-      const pokemonPromises = pokemonList.result.map(async (pokemonItem) => {
-        return await this.pokemonApiService.getPokemon(pokemonItem.id);
-      });
+      const pokemonPromises = pokemonList.result.reduce((acc, pokemonItem) => {
+        if (pokemonItem.id < MAX_POKEMON) {
+          acc.push(this.pokemonApiService.getPokemon(pokemonItem.id));
+        }
+        return acc;
+      }, []);
 
       return {
         count: pokemonList.count,
