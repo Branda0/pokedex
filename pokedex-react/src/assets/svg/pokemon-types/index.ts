@@ -1,37 +1,39 @@
-import bugLogo from "./bug.svg";
-import darkLogo from "./dark.svg";
-import dragonLogo from "./dragon.svg";
-import electricLogo from "./electric.svg";
-import fairyLogo from "./fairy.svg";
-import fightingLogo from "./fighting.svg";
-import fireLogo from "./fire.svg";
-import flyingLogo from "./flying.svg";
-import ghostLogo from "./ghost.svg";
-import grassLogo from "./grass.svg";
-import iceLogo from "./ice.svg";
-import normalLogo from "./normal.svg";
-import poisonLogo from "./poison.svg";
-import psychicLogo from "./psychic.svg";
-import rockLogo from "./rock.svg";
-import steelLogo from "./steel.svg";
-import waterLogo from "./water.svg";
+import bug from "./bug.svg";
+import dark from "./dark.svg";
+import dragon from "./dragon.svg";
+import electric from "./electric.svg";
+import fairy from "./fairy.svg";
+import fighting from "./fighting.svg";
+import fire from "./fire.svg";
+import flying from "./flying.svg";
+import ghost from "./ghost.svg";
+import grass from "./grass.svg";
+import ground from "./ground.svg";
+import ice from "./ice.svg";
+import normal from "./normal.svg";
+import poison from "./poison.svg";
+import psychic from "./psychic.svg";
+import rock from "./rock.svg";
+import steel from "./steel.svg";
+import water from "./water.svg";
 
 export {
-  bugLogo,
-  darkLogo,
-  dragonLogo,
-  electricLogo,
-  fairyLogo,
-  fightingLogo,
-  fireLogo,
-  flyingLogo,
-  ghostLogo,
-  grassLogo,
-  iceLogo,
-  normalLogo,
-  poisonLogo,
-  psychicLogo,
-  rockLogo,
-  steelLogo,
-  waterLogo,
+  bug,
+  dark,
+  dragon,
+  electric,
+  fairy,
+  fighting,
+  fire,
+  flying,
+  ghost,
+  grass,
+  ground,
+  ice,
+  normal,
+  poison,
+  psychic,
+  rock,
+  steel,
+  water,
 };
