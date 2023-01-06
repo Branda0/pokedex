@@ -66,11 +66,11 @@ cd pokedex
 
    ```
 
-4. You should now have your two servers running
+4. You now have two servers running
 
-   Front should be running on : http://127.0.0.1:5173/
+   Front should be running on : http://localhost:5173/
 
-   Back should be running on : http://127.0.0.1:3333/
+   Back should be running on : http://localhost:3333/
 
 ---
 
