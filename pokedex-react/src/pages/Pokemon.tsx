@@ -28,8 +28,6 @@ const Pokemon = () => {
     enabled: needFetching,
   });
 
-  console.log("id === ", id);
-
   if (needFetching) pokemon = data as IPokemon;
 
   if (isLoading) {
