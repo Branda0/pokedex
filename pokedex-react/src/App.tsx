@@ -5,9 +5,9 @@ import { Header, Footer } from "./components";
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className=" flex flex-col min-h-screen font-display">
         <Header />
-        <main className="flex-2 flex-col self-center max-w-4xl px-4 sm:px-10 m-auto my-12 border-2 border-red-600 ">
+        <main className=" flex flex-1 w-full flex-col">
           <Routes>
             <Route path="/" element={<Pokedex />} />
             <Route path="/pokemon/:id" element={<Pokemon />} />
