@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
+import useDebounce from "../hooks/useDebounce";
 import { IPokemon, IPokemonList } from "../types/pokemon";
 import { PokemonCard, Pagination, Loading, ProfessorOakMsg } from "../components";
 import { fetchPokemons } from "../fetchs/fetch-pokemon";
@@ -15,11 +16,19 @@ const FetchPokemons = ({
 }) => {
   const POKEMONS_PER_PAGE = 9;
 
-  const queryKey = [`pokemons-${page}-${searchValue}`];
+  //fetch only if the search bar value as not changed the last 500ms
+  const debouncedSearchValue = useDebounce(searchValue, 500);
+  const queryKey = [`pokemons-${page}-${debouncedSearchValue}`];
 
-  const { isLoading, isError, data, error } = useQuery(queryKey, () => fetchPokemons(page, searchValue), {
-    staleTime: 60000,
-  });
+  console.log({ debouncedSearchValue });
+
+  const { isLoading, isError, data, error } = useQuery(
+    queryKey,
+    () => fetchPokemons(page, debouncedSearchValue),
+    {
+      staleTime: 60000,
+    }
+  );
 
   const pokemonListData: IPokemonList = data as IPokemonList;
 
