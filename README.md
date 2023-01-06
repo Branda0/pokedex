@@ -99,3 +99,24 @@ The Pokedex App uses the following dependencies:
 - class-validator: ^0.14.0
 - reflect-metadata: ^0.1.13
 - rxjs: ^7.2.0
+
+---
+
+## Mediflash
+
+### Question
+
+Si 5 devs rejoignent ton équipe demain et que ton application est en production, quelles sont les améliorations à apporter à l'environnement de Dev et pourquoi ?
+Les classer par ordre de priorité
+
+### Réponse
+
+- Si 5 devs rejoignent mon équipe, la première problématique sera de faire en sorte que la collaboration entre nous soit la plus optimale, mettre en place un système de versioning sera donc je pense la priorité pour éviter la collision entre nos différents codes et faciliter le déploiement de nouvelles fonctionnalités.
+
+- En grandissant l’équipe, garder le contrôle sur la qualité du code sera aussi un des challenge premier, ainsi en plus de tests unitaires il est primordiale de s’assurer que le code passé en production est « validé » et ainsi mettre en place un processus d’intégration continue sera ma seconde mesure.
+
+- En grandissant l’application se doit aussi de continuer d’être performante, il faut ainsi s’assurer de la scalabilité de notre architecture et pour cela mettre en place un système de monitoring sera ma troisième mesure.
+
+- Afin de rendre l’ensemble du code plus compréhensible pour l’ensemble des devs mais aussi de faciliter sa maintenance, mettre en place un système de documentation.
+
+- Pour finir il me semble important de maintenir une certaine culture d’entreprise, favoriser les échanges entre les différents membres et mettre en place des sessions de peer review et de pair programming.
