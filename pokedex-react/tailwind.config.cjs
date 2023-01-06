@@ -6,6 +6,19 @@ module.exports = {
       display: ["Poppins", "sans-serif"],
       code: ["DotGothic16", "sans-serif"],
     },
+    screens: {
+      sm: "640px",
+      // => @media (min-width: 576px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 960px) { ... }
+
+      lg: "960px",
+      // => @media (min-width: 1440px) { ... }
+
+      xl: "1280px",
+      // => @media (min-width: 1280px) { ... }
+    },
     extend: {
       colors: {
         bugDark: "#84CC16",
@@ -51,7 +64,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /bg-(bug|dark|dragon|electric|fairy|fighting|fire|flying|ghost|grass|ground|ice|normal|poison|psychic|rock|steel|water)/,
+        /(bg|decoration)-(bug|dark|dragon|electric|fairy|fighting|fire|flying|ghost|grass|ground|ice|normal|poison|psychic|rock|steel|water)/,
     },
   ],
 };
