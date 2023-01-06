@@ -4,6 +4,12 @@ Welcome to the Pokedex App! This is a web application that allows you to browse 
 
 ---
 
+## Stack
+
+![Nest JS](https://img.shields.io/badge/Nest.js-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![REACT JS](https://img.shields.io/badge/React.JS-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind](https://img.shields.io/badge/Tailwind-08B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+
 ## Snapshots
 
 <img  align="left"  src="pokedex-react/src/assets/snapshots/mobile.png" alt="mobile-screenshot" width="23%" />
