@@ -20,8 +20,6 @@ const FetchPokemons = ({
   const debouncedSearchValue = useDebounce(searchValue, 500);
   const queryKey = [`pokemons-${page}-${debouncedSearchValue}`];
 
-  console.log({ debouncedSearchValue });
-
   const { isLoading, isError, data, error } = useQuery(
     queryKey,
     () => fetchPokemons(page, debouncedSearchValue),

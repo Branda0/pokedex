@@ -17,7 +17,6 @@ export const fetchPokemons = async (page: number, searchValue: string): Promise<
   });
   const pokemons = response.data;
 
-  console.log("fetching pokemons =", pokemons);
   return pokemons;
 };
 
@@ -25,7 +24,6 @@ export const fetchPokemon = async (id: string): Promise<IPokemon> => {
   const response = await axios.get(`${import.meta.env.VITE_HOST}${import.meta.env.VITE_PORT}/pokemon/${id}`);
   const pokemon = response.data;
 
-  console.log("fetching pokemon =", pokemon);
   return pokemon;
 };
 
@@ -33,6 +31,5 @@ export const fetchPokemonDetails = async (id: string): Promise<IPokemonDetails> 
   const response = await axios.get(`${import.meta.env.VITE_HOST}${import.meta.env.VITE_PORT}/details/${id}`);
   const details = response.data;
 
-  console.log("fetching pokemon details =", details);
   return details;
 };
