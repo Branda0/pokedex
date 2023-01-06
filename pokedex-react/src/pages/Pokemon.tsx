@@ -36,7 +36,7 @@ const Pokemon = () => {
 
   if (isError && error instanceof Error) {
     return (
-      <div>
+      <>
         {error.message === "Request failed with status code 400" ? (
           <ProfessorOakMsg
             message={`Have you tweaked your Pokedex ? Their is some kind of error with your Pokemon ID data field ... `}
@@ -46,7 +46,7 @@ const Pokemon = () => {
             message={`Hmmm it seems like we are having some trouble with the national pokedex database. Sorry for that, try again ... `}
           />
         )}{" "}
-      </div>
+      </>
     );
   }
 
