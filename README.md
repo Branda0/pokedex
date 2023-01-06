@@ -6,8 +6,8 @@ Welcome to the Pokedex App! This is a web application that allows you to browse 
 
 ## Snapshots
 
-<img align="left" src="pokedex-react/src/assets/snapshots/mobile.png" alt="mobile-screenshot" width="20%" />
-<img  src="pokedex-react/src/assets/snapshots/laptop.png" alt="laptop-screenshot-1"  width="70%" />
+<img  align="left"  src="pokedex-react/src/assets/snapshots/mobile.png" alt="mobile-screenshot" width="23%" />
+<img  src="pokedex-react/src/assets/snapshots/laptop.png" alt="laptop-screenshot-1"  width="74%" />
 
 ---
 
