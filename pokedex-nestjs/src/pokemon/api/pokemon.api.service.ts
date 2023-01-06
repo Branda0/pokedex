@@ -6,6 +6,7 @@ import {
   PokemonApiItem,
   PokemonResultList,
   PokemonResultItem,
+  PokemonDetails,
 } from '../types/pokemon.types';
 
 @Injectable()
@@ -24,11 +25,10 @@ export class PokemonApiService {
         height: pokemonData?.height,
         weight: pokemonData?.weight,
         image: pokemonData?.sprites?.other?.['official-artwork']?.front_default,
-        types: pokemonData?.types.map((typeSlot) => typeSlot.type.name),
+        types: pokemonData?.types.map((typeSlot: any) => typeSlot.type.name),
+        abilities: pokemonData.abilities.map((item: any) => item.ability.name),
       };
     } catch (error) {
-      if (error.response.statusText === 'Not Found') {
-      }
       throw new Error(
         `Error fetching Pokemon with id ${pokemonId}: ${error.message}`,
       );
@@ -92,5 +92,30 @@ export class PokemonApiService {
         return { name: pokemon.name, id: Number(urlId) };
       }),
     };
+  }
+
+  async getPokemonDetails(pokemonId: number): Promise<PokemonDetails> {
+    try {
+      const responseDetails = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`,
+      );
+      const pokemonDetails = responseDetails.data;
+
+      // const responseEvolutions = await axios.get(
+      //   pokemonDetails.evolution_chain.url,
+      // );
+      // const pokemonEvolutions = responseEvolutions.data;
+
+      return {
+        description: pokemonDetails.flavor_text_entries[0]?.flavor_text,
+        habitat: pokemonDetails.habitat?.name,
+        shape: pokemonDetails.shape?.name,
+        evolutions: [],
+      };
+    } catch (error) {
+      throw new Error(
+        `Error fetching Pokemon with id ${pokemonId}: ${error.message}`,
+      );
+    }
   }
 }
