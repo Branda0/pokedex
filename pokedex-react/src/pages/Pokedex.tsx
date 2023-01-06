@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Pagination, SearchBar, PokemonsGrid } from "../components";
+import { useState } from "react";
+import { SearchBar, PokemonsGrid } from "../components";
 
 const Pokedex = () => {
   const [page, setPage] = useState<number>(1);
