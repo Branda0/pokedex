@@ -1,6 +1,6 @@
 # Pokedex App
 
-Welcome to the Pokedex App! This is a web application that allows you to browse and discover all the different Pokemon species and their details.
+Welcome to the Pokedex App! This is a web application that allows you to browse and discover all the different Pokemon species and their details based on the [PokéAPI](https://pokeapi.co/docs/v2)
 
 ---
 
