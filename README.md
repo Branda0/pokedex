@@ -6,6 +6,9 @@ Welcome to the Pokedex App! This is a web application that allows you to browse 
 
 ## Snapshots
 
+<img  src="pokedex-react/src/assets/snapshots/mobile.png" alt="mobile-screenshot" width="23%" />
+<img  src="pokedex-react/src/assets/snapshots/laptop.png" alt="laptop-screenshot-1"  width="74%" />
+
 ---
 
 ## Prerequisites
@@ -32,7 +35,7 @@ git clone https://github.com/Branda0/pokedex.git
 cd pokedex
 ```
 
-3. From their you need to install the front and back dependencies and run
+3. From their you need to install the front and back dependencies and run them
 
    #### For the backend & from the root directory
 
@@ -57,7 +60,7 @@ cd pokedex
 
    ```
 
-4. You should now have your two server running
+4. You should now have your two servers running
 
    Front should be running on : http://127.0.0.1:5173/
 
