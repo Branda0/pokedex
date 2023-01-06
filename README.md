@@ -1,6 +1,15 @@
 # Pokedex App
 
-Welcome to the Pokedex App! This is a web application that allows you to browse and discover all the different Pokemon species and their details based on the [PokéAPI](https://pokeapi.co/docs/v2)
+**Welcome to the Pokedex App! This is a web application that allows you to browse and discover all the different Pokemon species**
+
+---
+
+## Description
+
+The app consist of :
+
+- a NestJS backend that consumes the [PokéAPI](https://pokeapi.co/docs/v2)
+- a ReactJS front that displays and perform the caching of fetched data utilizing the react Query library
 
 ---
 
@@ -9,6 +18,8 @@ Welcome to the Pokedex App! This is a web application that allows you to browse 
 ![Nest JS](https://img.shields.io/badge/Nest.js-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
 ![REACT JS](https://img.shields.io/badge/React.JS-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Tailwind](https://img.shields.io/badge/Tailwind-08B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+
+---
 
 ## Snapshots
 
