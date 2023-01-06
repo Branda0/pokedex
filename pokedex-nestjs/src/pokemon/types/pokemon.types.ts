@@ -6,6 +6,7 @@ export interface Pokemon {
   weight: number;
   image: string;
   types: string[];
+  abilities: string[];
 }
 
 //properties of PokemonList, as returned to client from /pokemon endpoint
@@ -16,7 +17,8 @@ export interface PokemonList {
 
 export interface PokemonDetails {
   description: string;
-  color: string;
+  habitat: string;
+  shape: string;
   evolutions: any[]; // need todefine evolution format
 }
 
