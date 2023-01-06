@@ -54,7 +54,7 @@ const FetchPokemons = ({
   }
 
   return (
-    <div className=" flex flex-col flex-1   ">
+    <div className=" flex flex-col flex-1 pb-20 sm:pb-0  ">
       <Pagination
         setPage={setPage}
         currentPage={page}

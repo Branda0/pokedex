@@ -35,7 +35,7 @@ const Pagination = ({
   }
 
   return (
-    <div className="flex self-center  py-3 px-4  rounded-2xl  border-gray-200">
+    <div className="flex self-center  py-0 px-4 rounded-2xl  border-gray-200 sm:py-3">
       {currentPage > 1 && currentPage - 3 > 1 ? (
         <PaginationIcon setPage={setPage} currentPage={currentPage} page={1} totalPages={totalPages} />
       ) : null}
