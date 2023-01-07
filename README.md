@@ -24,7 +24,7 @@ The app consist of :
 ## Snapshots
 
 <img  align="left"  src="pokedex-react/src/assets/snapshots/mobile.png" alt="mobile-screenshot" width="23%" />
-<img  src="pokedex-react/src/assets/snapshots/laptop.png" alt="laptop-screenshot-1"  width="74%" />
+<img  src="pokedex-react/src/assets/snapshots/desktop.png" alt="laptop-screenshot-1"  width="74%" />
 
 ---
 
