@@ -1,5 +1,7 @@
 import professorOakImg from "../assets/img/professorOak.png";
-const ProfessorOakMsg = ({ message }: { message: string }) => {
+import { ProfessorOakMsgProps } from "../props";
+
+const ProfessorOakMsg = ({ message }: ProfessorOakMsgProps) => {
   return (
     <div className="flex flex-col flex-1 justify-center items-center px-4">
       <img className="w-32 mb-4 " src={professorOakImg} alt="professor Oak" />

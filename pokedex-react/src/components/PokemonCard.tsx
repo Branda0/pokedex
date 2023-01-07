@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { IPokemon } from "../types/pokemon";
 import TypeCard from "./TypeCard";
+import PokemonCardProps from "../props/PokemonCard";
 
-const PokemonCard = ({ pokemon }: { pokemon: IPokemon }) => {
+const PokemonCard = ({ pokemon }: PokemonCardProps) => {
   return (
     <Link
       className={`flex flex-col justify-between border-2 border-gray-700 p-4 rounded-lg bg-${pokemon.types[0]}Light duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-md md:p-2 lg:p-4  `}

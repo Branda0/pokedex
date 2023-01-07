@@ -1,4 +1,5 @@
 import pokeballImg from "../assets/img/pokeball.png";
+
 const Loading = () => {
   return (
     <div className="flex flex-col flex-1 justify-center items-center ">

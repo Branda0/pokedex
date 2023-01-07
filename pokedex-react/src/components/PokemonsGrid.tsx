@@ -1,19 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+
 import { useQuery } from "react-query";
 import useDebounce from "../hooks/useDebounce";
 import { IPokemon, IPokemonList } from "../types/pokemon";
 import { PokemonCard, Pagination, Loading, ProfessorOakMsg } from "../components";
 import { fetchPokemons } from "../fetchs/fetch-pokemon";
+import { PokemonsGridProps } from "../props";
 
-const FetchPokemons = ({
-  searchValue,
-  page,
-  setPage,
-}: {
-  searchValue: string;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
   const POKEMONS_PER_PAGE = 9;
 
   //fetch only if the search bar value as not changed the last 500ms
@@ -71,4 +65,5 @@ const FetchPokemons = ({
     </div>
   );
 };
-export default FetchPokemons;
+
+export default PokemonsGrid;

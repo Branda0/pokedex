@@ -1,12 +1,6 @@
-import { IPokemon, IPokemonDetails } from "../types/pokemon";
+import { DetailStatsProps } from "../props";
 
-const DetailsStats = ({
-  pokemon,
-  pokemonDetails,
-}: {
-  pokemon: IPokemon;
-  pokemonDetails: IPokemonDetails;
-}) => {
+const DetailsStats = ({ pokemon, pokemonDetails }: DetailStatsProps) => {
   return (
     <div className="flex flex-col text-sm">
       <div className="flex gap-10 py-4 border-b-2 border-gray-200">

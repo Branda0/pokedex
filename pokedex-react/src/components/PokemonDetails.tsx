@@ -1,9 +1,10 @@
-import { IPokemon, IPokemonDetails } from "../types/pokemon";
-import { fetchPokemon, fetchPokemonDetails } from "../fetchs/fetch-pokemon";
+import { IPokemonDetails } from "../types/pokemon";
+import { PokemonDetailsProps } from "../props";
+import { fetchPokemonDetails } from "../fetchs/fetch-pokemon";
 import { Loading, ProfessorOakMsg, DetailsStats } from "../components";
 import { useQuery } from "react-query";
 
-const PokemonDetails = ({ pokemon }: { pokemon: IPokemon }) => {
+const PokemonDetails = ({ pokemon }: PokemonDetailsProps) => {
   // fetch detail of the Pokemon
   const queryKey = [`details-${pokemon.id}`];
   const { isLoading, isError, data, error } = useQuery(queryKey, () => fetchPokemonDetails(pokemon.id), {

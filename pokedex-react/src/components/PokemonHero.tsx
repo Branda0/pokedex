@@ -1,9 +1,7 @@
-// import { useQuery } from "react-query";
-// import { fetchPokemon } from "../fetchs/fetch-pokemon";
-import { IPokemon } from "../types/pokemon";
 import { TypeCard } from "../components";
+import { PokemonHeroProps } from "../props";
 
-const PokemonHero = ({ pokemon }: { pokemon: IPokemon }) => {
+const PokemonHero = ({ pokemon }: PokemonHeroProps) => {
   return (
     <div className="flex flex-1 flex-col w-full max-w-5xl px-4 m-auto justify-center items-center sm:flex-row sm:items-end sm:justify-around">
       <div className="flex flex-col pt-10 pb-5 md:pb-10 ">
@@ -25,8 +23,6 @@ const PokemonHero = ({ pokemon }: { pokemon: IPokemon }) => {
         alt="Pokemon"
       />
     </div>
-
-    // </div>
   );
 };
 

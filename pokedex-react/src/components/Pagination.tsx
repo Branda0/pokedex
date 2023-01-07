@@ -1,14 +1,8 @@
 import { PaginationIcon } from "../components";
+import { useEffect } from "react";
+import { PaginationProps } from "../props";
 
-const Pagination = ({
-  currentPage,
-  totalPages,
-  setPage,
-}: {
-  currentPage: number;
-  totalPages: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+const Pagination = ({ currentPage, totalPages, setPage }: PaginationProps) => {
   const pageNumbers: number[] = [];
 
   // Add page numbers to the pageNumbers array
@@ -37,24 +31,13 @@ const Pagination = ({
   return (
     <div className="flex self-center  py-0 px-4 rounded-2xl  border-gray-200 sm:py-3">
       {currentPage > 1 && currentPage - 3 > 1 ? (
-        <PaginationIcon setPage={setPage} currentPage={currentPage} page={1} totalPages={totalPages} />
+        <PaginationIcon setPage={setPage} currentPage={currentPage} pageNumber={1} />
       ) : null}
       {pageNumbers.map((pageNumber, index) => (
-        <PaginationIcon
-          key={index}
-          setPage={setPage}
-          currentPage={currentPage}
-          page={pageNumber}
-          totalPages={totalPages}
-        />
+        <PaginationIcon key={index} setPage={setPage} currentPage={currentPage} pageNumber={pageNumber} />
       ))}
       {currentPage < totalPages && currentPage + 3 < totalPages ? (
-        <PaginationIcon
-          setPage={setPage}
-          currentPage={currentPage}
-          page={totalPages}
-          totalPages={totalPages}
-        />
+        <PaginationIcon setPage={setPage} currentPage={currentPage} pageNumber={totalPages} />
       ) : null}
     </div>
   );
