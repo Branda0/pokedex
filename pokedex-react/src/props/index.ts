@@ -7,6 +7,7 @@ import PaginationProps from "./Pagination";
 import PokemonDetailsProps from "./PokemonDetails";
 import PaginationIconProps from "./PaginationIcon";
 import DetailStatsProps from "./DetailStats";
+import StatsRowProps from "./StatsRow";
 
 export {
   type PokemonsGridProps,
@@ -18,4 +19,5 @@ export {
   type PokemonDetailsProps,
   type PaginationIconProps,
   type DetailStatsProps,
+  type StatsRowProps,
 };

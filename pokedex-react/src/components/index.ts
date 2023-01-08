@@ -11,6 +11,7 @@ import ProfessorOakMsg from "./ProfessorOakMsg";
 import PokemonHero from "./PokemonHero";
 import PokemonDetails from "./PokemonDetails";
 import DetailsStats from "./DetailStats";
+import StatsRow from "./StatsRow";
 
 export {
   Header,
@@ -26,4 +27,5 @@ export {
   PokemonHero,
   PokemonDetails,
   DetailsStats,
+  StatsRow,
 };
