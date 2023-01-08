@@ -21,6 +21,14 @@ The app consists of :
 
 ---
 
+## Demo
+
+You can use the Pokedex online from [there](https://pokedex-branda0.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b34ceb89-b6bd-452d-b515-fe5428640103/deploy-status)](https://app.netlify.com/sites/pokedex-branda0/deploys)
+
+---
+
 ## Snapshots
 
 <img  align="left"  src="pokedex-react/src/assets/snapshots/mobile.png" alt="mobile-screenshot" width="23%" />
@@ -106,6 +114,7 @@ The Pokedex App uses the following dependencies:
 <details>
 <summary>devDependencies</summary>
 
+      - @types/node: ^18.11.18
       - @types/react: ^18.0.26
       - @types/react-dom: ^18.0.9
       - @vitejs/plugin-react: ^3.0.0
