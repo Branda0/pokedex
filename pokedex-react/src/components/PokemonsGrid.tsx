@@ -10,8 +10,6 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
   const MD_MEDIA_QUERIE = 768;
   const POKEMONS_PER_PAGE = window.innerWidth > MD_MEDIA_QUERIE ? 9 : 10;
 
-  console.log({ width: window.innerWidth });
-
   // state that will be updated by react query but will be used to display old data beetween fetches
   const [pokemonCount, setPokemonCount] = useState<number>(0);
 
@@ -69,6 +67,11 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
           ))}
         </div>
       )}
+      <Pagination
+        setPage={setPage}
+        currentPage={page}
+        totalPages={Math.ceil(pokemonCount / POKEMONS_PER_PAGE)}
+      />
     </div>
   );
 };
