@@ -1,12 +1,12 @@
 # Pokedex App
 
-**Welcome to the Pokedex App! This is a web application that allows you to browse and discover all the different Pokemon species**
+**Welcome to the Pokedex App! This is a web application that allows you to browse and discover all the different Pokemon**
 
 ---
 
 ## Description
 
-The app consist of :
+The app consists of :
 
 - a NestJS backend that consumes the [PokéAPI](https://pokeapi.co/docs/v2)
 - a ReactJS front that displays and perform the caching of fetched data utilizing the react Query library
@@ -91,25 +91,78 @@ The Pokedex App uses the following dependencies:
 
 ### Frontend
 
-- axios: ^1.2.2
-- dotenv: ^16.0.3
-- react: ^18.2.0
-- react-dom: ^18.2.0
-- react-query: ^3.39.2
-- react-router-dom: ^6.6.1
+<details>
+<summary>Dependencies</summary>
+
+      - axios: ^1.2.2
+      - dotenv: ^16.0.3
+      - react: ^18.2.0
+      - react-dom: ^18.2.0
+      - react-query: ^3.39.2
+      - react-router-dom: ^6.6.1
+
+</details>
+
+<details>
+<summary>devDependencies</summary>
+
+      - @types/react: ^18.0.26
+      - @types/react-dom: ^18.0.9
+      - @vitejs/plugin-react: ^3.0.0
+      - postcss": ^8.4.20
+      - autoprefixer": ^10.4.13
+      - tailwindcss": ^3.2.4
+      - typescript": ^4.9.3
+      - vite: ^4.0.0
+
+</details>
+<br>
 
 ### Backend
 
-- @nestjs/axios: ^1.0.1
-- @nestjs/common: ^9.2.1
-- @nestjs/core: ^9.0.0
-- @nestjs/cqrs: ^9.0.1
-- @nestjs/platform-express: ^9.0.0
-- axios: ^1.2.2
-- class-transformer: ^0.5.1
-- class-validator: ^0.14.0
-- reflect-metadata: ^0.1.13
-- rxjs: ^7.2.0
+<details>
+<summary>Dependencies</summary>
+
+      - @nestjs/axios: ^1.0.1
+      - @nestjs/common: ^9.2.1
+      - @nestjs/core: ^9.0.0
+      - @nestjs/cqrs: ^9.0.1
+      - @nestjs/platform-express: ^9.0.0
+      - axios: ^1.2.2
+      - class-transformer: ^0.5.1
+      - class-validator: ^0.14.0
+      - reflect-metadata: ^0.1.13
+      - rxjs: ^7.2.0
+
+  </details>
+
+<details>
+<summary>devDependencies</summary>
+
+      - @nestjs/cli: ^9.0.0
+      - @nestjs/schematics: ^9.0.0
+      - @nestjs/testing: ^9.0.0
+      - @types/express: ^4.17.13
+      - @types/jest: 29.2.4
+      - @types/node": 18.11.18
+      - @types/supertest": ^2.0.11
+      - @typescript-eslint/eslint-plugin: ^5.0.0
+      - @typescript-eslint/parser: ^5.0.0
+      - eslint: ^8.0.1
+      - eslint-config-prettier: ^8.3.0
+      - eslint-plugin-prettier: ^4.0.0
+      - jest: 29.3.1
+      - prettier: ^2.3.2
+      - source-map-support: ^0.5.20
+      - supertest: ^6.1.3
+      - ts-jest: 29.0.3
+      - ts-loader: ^9.2.3
+      - ts-node: ^10.0.0
+      - tsconfig-paths: 4.1.1
+      - typescript: ^4.7.4
+
+</details>
+<br>
 
 ---
 
