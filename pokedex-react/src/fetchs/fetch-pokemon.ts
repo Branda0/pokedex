@@ -15,7 +15,7 @@ export const fetchPokemons = async (
   const response = await axios.get(`${process.env.VITE_POKEDEX_API}/pokemon`, {
     params: {
       page,
-      pokemonName: isId ? null : searchValue,
+      pokemonName: isId ? null : searchValue.toLowerCase(),
       pokemonId: isId ? searchValue : null,
       limit,
     },
