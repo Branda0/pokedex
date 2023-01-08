@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import headerLogo from "../assets/img/pokedexHeader.png";
 
 const Header = () => {
   return (
-    <header className="flex shadow-md h-20 p-3 bg-gray-100 sm:h-32 sm:p-6">
-      <div className="justify-center flex w-full ">
-        <img src={headerLogo} className="object-contain mx-4" alt="Pokedex Title" />
-      </div>
+    <header className="flex justify-center shadow-md p-3 bg-gray-100 sm:p-6">
+      <Link to={"/"}>
+        <img src={headerLogo} className="h-11 sm:h-20" alt="Pokedex Title" />
+      </Link>
     </header>
   );
 };
