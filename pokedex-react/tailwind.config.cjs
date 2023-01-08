@@ -8,16 +8,9 @@ module.exports = {
     },
     screens: {
       sm: "640px",
-      // => @media (min-width: 576px) { ... }
-
       md: "768px",
-      // => @media (min-width: 960px) { ... }
-
       lg: "960px",
-      // => @media (min-width: 1440px) { ... }
-
       xl: "1280px",
-      // => @media (min-width: 1280px) { ... }
     },
     extend: {
       colors: {
