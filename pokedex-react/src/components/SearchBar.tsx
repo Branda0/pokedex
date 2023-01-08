@@ -11,7 +11,7 @@ const SearchBar = ({ searchValue, setSearchValue, setPage }: SearchBarProps) => 
         setSearchValue(event.target.value);
         setPage(1);
       }}
-    ></input>
+    />
   );
 };
 
