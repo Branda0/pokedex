@@ -55,7 +55,7 @@ const Pokemon = () => {
       <div className={`flex bg-${pokemon.types[0]}Light shadow-md`}>
         <PokemonHero pokemon={pokemon} />
       </div>
-      <div className="flex flex-col flex-1 w-full py-10 max-w-3xl px-4 sm:px-8 m-auto">
+      <div className="flex flex-col flex-1 w-full py-10 max-w-3xl px-6 sm:px-8 m-auto">
         <PokemonDetails pokemon={pokemon} />
       </div>
     </div>
