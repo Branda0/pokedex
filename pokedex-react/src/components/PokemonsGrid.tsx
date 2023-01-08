@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import useDebounce from "../hooks/useDebounce";
 import { IPokemon, IPokemonList } from "../types/pokemon";
@@ -8,13 +7,16 @@ import { fetchPokemons } from "../fetchs/fetch-pokemon";
 import { PokemonsGridProps } from "../props";
 
 const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
+  // state that will be updated by react query but will be used to display old data beetween fetches
+  const [pokemonCount, setPokemonCount] = useState<number>(0);
+
   const POKEMONS_PER_PAGE = 9;
 
   //fetch only if the search bar value as not changed the last 500ms
   const debouncedSearchValue = useDebounce(searchValue, 500);
   const queryKey = [`pokemons-${page}-${debouncedSearchValue}`];
 
-  const { isLoading, isError, data, error } = useQuery(
+  const { isLoading, isError, isFetched, data, error } = useQuery(
     queryKey,
     () => fetchPokemons(page, debouncedSearchValue),
     {
@@ -22,11 +24,14 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
     }
   );
 
-  const pokemonListData: IPokemonList = data as IPokemonList;
+  useEffect(() => {
+    if (!isLoading && data && data.count !== pokemonCount) {
+      // Update the count if the data has changed
+      setPokemonCount(data.count);
+    }
+  }, [data, pokemonCount, isLoading]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  const pokemonListData = data as IPokemonList;
 
   if (isError) {
     console.log(error);
@@ -37,7 +42,7 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
     );
   }
 
-  if (pokemonListData.data.length === 0) {
+  if (isFetched && pokemonListData.data.length === 0) {
     return (
       <ProfessorOakMsg
         message={"I'm afraid that this pokemon doesn't exist in the national pokedex database ..."}
@@ -50,18 +55,17 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
       <Pagination
         setPage={setPage}
         currentPage={page}
-        totalPages={Math.ceil(pokemonListData.count / POKEMONS_PER_PAGE)}
+        totalPages={Math.ceil(pokemonCount / POKEMONS_PER_PAGE)}
       />
-      <div className="grid grid-cols-1 gap-12 p-2 my-10 sm:grid-cols-2 md:grid-cols-3">
-        {pokemonListData.data.map((pokemon: IPokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
-      </div>
-      <Pagination
-        setPage={setPage}
-        currentPage={page}
-        totalPages={Math.ceil(pokemonListData.count / POKEMONS_PER_PAGE)}
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="grid grid-cols-1 gap-12 p-2 my-10 sm:grid-cols-2 md:grid-cols-3">
+          {pokemonListData.data.map((pokemon: IPokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
