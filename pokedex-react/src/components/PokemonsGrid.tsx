@@ -7,10 +7,13 @@ import { fetchPokemons } from "../fetchs/fetch-pokemon";
 import { PokemonsGridProps } from "../props";
 
 const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
+  const MD_MEDIA_QUERIE = 768;
+  const POKEMONS_PER_PAGE = window.innerWidth > MD_MEDIA_QUERIE ? 9 : 10;
+
+  console.log({ width: window.innerWidth });
+
   // state that will be updated by react query but will be used to display old data beetween fetches
   const [pokemonCount, setPokemonCount] = useState<number>(0);
-
-  const POKEMONS_PER_PAGE = 9;
 
   //fetch only if the search bar value as not changed the last 500ms
   const debouncedSearchValue = useDebounce(searchValue, 500);
@@ -18,7 +21,7 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
 
   const { isLoading, isError, isFetched, data, error } = useQuery(
     queryKey,
-    () => fetchPokemons(page, debouncedSearchValue),
+    () => fetchPokemons(page, debouncedSearchValue, POKEMONS_PER_PAGE),
     {
       staleTime: 60000,
     }

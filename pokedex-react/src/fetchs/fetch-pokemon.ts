@@ -5,7 +5,11 @@ function isInt(str: string) {
   return /^\d+$/.test(str);
 }
 
-export const fetchPokemons = async (page: number, searchValue: string): Promise<IPokemonList> => {
+export const fetchPokemons = async (
+  page: number,
+  searchValue: string,
+  limit: number
+): Promise<IPokemonList> => {
   const isId = isInt(searchValue);
 
   const response = await axios.get(`${import.meta.env.VITE_POKEDEX_API}/pokemon`, {
@@ -13,6 +17,7 @@ export const fetchPokemons = async (page: number, searchValue: string): Promise<
       page,
       pokemonName: isId ? null : searchValue,
       pokemonId: isId ? searchValue : null,
+      limit,
     },
   });
   const pokemons = response.data;
