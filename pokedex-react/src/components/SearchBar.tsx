@@ -10,6 +10,7 @@ const SearchBar = ({ searchValue, setSearchValue, setPage }: SearchBarProps) => 
       onChange={(event) => {
         setSearchValue(event.target.value);
         setPage(1);
+        sessionStorage.setItem("current-page", "1");
       }}
     />
   );

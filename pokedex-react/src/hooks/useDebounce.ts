@@ -7,6 +7,7 @@ const useDebounce = (value: any, delay: number) => {
   useEffect(() => {
     const debounceHandler = setTimeout(() => {
       setDebouncedValue(value);
+      sessionStorage.setItem("search-value", value);
     }, delay);
 
     return () => {
