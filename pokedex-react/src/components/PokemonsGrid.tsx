@@ -52,7 +52,7 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
   }
 
   return (
-    <div className=" flex flex-col flex-1 pb-20 sm:pb-0  ">
+    <div className="flex flex-col flex-1 pb-24 pt-12 sm:pb-0  ">
       <Pagination
         setPage={setPage}
         currentPage={page}
