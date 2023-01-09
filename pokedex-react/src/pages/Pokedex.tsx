@@ -5,6 +5,7 @@ const Pokedex = () => {
   const [page, setPage] = useState<number>(Number(sessionStorage.getItem("current-page")) || 1);
   const [searchValue, setSearchValue] = useState<string>(sessionStorage.getItem("search-value") || "");
 
+  //Scroll to top of the page when using pagination of the Pokemon Grid
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [page]);
