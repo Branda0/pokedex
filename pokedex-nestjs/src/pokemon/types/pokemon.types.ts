@@ -15,11 +15,17 @@ export interface PokemonList {
   data: Pokemon[];
 }
 
+//properties of PokemonDetails, as returned to client from /details/:id endpoint
 export interface PokemonDetails {
   description: string;
   habitat: string;
   shape: string;
-  evolutions: any[]; // need todefine evolution format
+  evolutions: Array<EvolutionItem | EvolutionItem[]>;
+}
+
+export interface EvolutionItem {
+  name: string;
+  id: number;
 }
 
 //proporties of pokemon list returned from pokemon api service getPokemonList
