@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { PokemonHero, Loading, ProfessorOakMsg, PokemonDetails } from "../components";
 import { fetchPokemon } from "../fetchs/fetch-pokemon";
@@ -7,6 +8,11 @@ import { IPokemon } from "../types/pokemon";
 const Pokemon = () => {
   //Get pokemon id from url /:id
   const { id } = useParams<string>();
+
+  //Set the window to top of the screen
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   let pokemon!: IPokemon;
   let needFetching: boolean = true;
