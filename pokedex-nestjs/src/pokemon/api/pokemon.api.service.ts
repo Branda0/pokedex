@@ -11,7 +11,7 @@ import {
 
 @Injectable()
 export class PokemonApiService {
-  // Return one pokemon given its ID
+  // Returns one Pokemon given its ID
   async getPokemon(pokemonId: number): Promise<Pokemon> {
     try {
       const response = await axios.get(
@@ -35,7 +35,7 @@ export class PokemonApiService {
     }
   }
 
-  // Return a list of pokemon api items using pagination
+  // Returns a list of pokemon api items using pagination
   async getPokemonList(props: GetPokemonsQuery): Promise<PokemonResultList> {
     const MAX_POKEMON = 905;
 
@@ -94,6 +94,7 @@ export class PokemonApiService {
     };
   }
 
+  // Returns a Pokemon sets of details given its ID
   async getPokemonDetails(pokemonId: number): Promise<PokemonDetails> {
     try {
       const responseDetails = await axios.get(
@@ -101,21 +102,80 @@ export class PokemonApiService {
       );
       const pokemonDetails = responseDetails.data;
 
-      // const responseEvolutions = await axios.get(
-      //   pokemonDetails.evolution_chain.url,
-      // );
-      // const pokemonEvolutions = responseEvolutions.data;
+      interface evoItem {
+        name: string;
+        id: number;
+      }
+
+      // let pokemonEvolutions: Array<evoItem | evoItem[]> = [];
+      let pokemonEvolutions: any = [];
+
+      if (pokemonDetails.evolution_chain) {
+        const responseEvolutions = await axios.get(
+          pokemonDetails.evolution_chain.url,
+        );
+        const dataEvolutions = responseEvolutions.data;
+        pokemonEvolutions = extractEvolution(dataEvolutions.chain);
+      } else if (pokemonDetails.evolves_from_species) {
+        pokemonEvolutions.push(
+          {
+            name: pokemonDetails.evolves_from_species.name,
+            id: Number(
+              pokemonDetails.evolves_from_species.url.match(
+                /(?<=\/)\d+(?=\/)/g,
+              )[0],
+            ),
+          },
+          {
+            name: pokemonDetails.name,
+            id: pokemonDetails.id,
+          },
+        );
+      }
+
+      console.log(pokemonEvolutions);
 
       return {
         description: pokemonDetails.flavor_text_entries[0]?.flavor_text,
         habitat: pokemonDetails.habitat?.name,
         shape: pokemonDetails.shape?.name,
-        evolutions: [],
+        evolutions: pokemonEvolutions,
       };
     } catch (error) {
       throw new Error(
         `Error fetching Pokemon with id ${pokemonId}: ${error.message}`,
       );
+    }
+
+    function extractEvolution(chain: any) {
+      const evolutions = {
+        name: chain.species.name,
+        id: Number(chain.species.url.match(/(?<=\/)\d+(?=\/)/g)[0]),
+      };
+
+      if (chain.evolves_to && chain.evolves_to.length > 0) {
+        if (chain.evolves_to.length > 1) {
+          return [
+            [evolutions],
+
+            chain.evolves_to
+              .map((evolution: any) => extractEvolution(evolution))
+              .flat(),
+          ];
+        } else {
+          return [
+            [evolutions],
+
+            chain.evolves_to
+              .map((evolution: any) => extractEvolution(evolution))
+              .flat(),
+          ]
+            .concat()
+            .flat();
+        }
+      }
+
+      return [evolutions];
     }
   }
 }
