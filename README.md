@@ -186,7 +186,7 @@ Les classer par ordre de priorité
 
 - Si 5 devs rejoignent mon équipe, la première problématique sera de faire en sorte que la collaboration entre nous soit la plus optimale, mettre en place un système de versioning sera donc je pense la priorité pour éviter la collision entre nos différents codes et faciliter le déploiement de nouvelles fonctionnalités.
 
-- En grandissant l’équipe, garder le contrôle sur la qualité du code sera aussi un des challenge premier, ainsi en plus de tests unitaires il est primordial de s’assurer que le code passé en production est « validé » et ainsi mettre en place un processus d’intégration continue sera ma seconde mesure.
+- En agrandissant l’équipe, garder le contrôle sur la qualité du code sera aussi un des challenge premier, ainsi en plus de tests unitaires il est primordial de s’assurer que le code passé en production est « validé » et ainsi mettre en place un processus d’intégration continue sera ma seconde mesure.
 
 - En grandissant, l’application se doit aussi de continuer d’être performante, il faut ainsi s’assurer de la scalabilité de notre architecture et pour cela mettre en place un système de monitoring sera ma troisième mesure.
 
