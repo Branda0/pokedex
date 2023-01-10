@@ -6,12 +6,16 @@ import { IPokemon } from "../types/pokemon";
 import pokeballImg from "../assets/img/pokeball.png";
 
 const EvolutionCard = ({ pokemon }: EvolutionCardProps) => {
-  const queryKey = [`pokemon-evo-${pokemon.id}`];
-  const { isLoading, isError, data } = useQuery(queryKey, () => fetchPokemon(pokemon.id), {
+  const queryKey = [`pokemon-${pokemon.id}`];
+  const { isLoading, isError, data } = useQuery([queryKey], () => fetchPokemon(pokemon.id), {
     staleTime: 60000,
   });
 
   const pokemonData = data as IPokemon;
+  const state = {
+    ...((isLoading || isError) && { pokemonFromCard: null }),
+    ...(!isLoading && !isError && { pokemonFromCard: pokemonData }),
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -20,6 +24,7 @@ const EvolutionCard = ({ pokemon }: EvolutionCardProps) => {
           isError || isLoading ? "border-gray-800" : `border-${pokemonData.types[0]}Dark`
         }`}
         to={`/pokemon/${pokemon.id}`}
+        state={state}
       >
         {isError || isLoading ? (
           <img

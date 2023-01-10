@@ -26,13 +26,14 @@ const Pokemon = () => {
   const location = useLocation();
 
   //using pokemon data from Link of previous fetched data
-  if (location?.state) {
+  if (location?.state?.pokemonFromCard) {
     const { pokemonFromCard } = location.state;
     pokemon = pokemonFromCard;
     needFetching = false;
   }
 
   //if no data is coming from Link we fetch it (case where route accessed is directly from url)
+  // const queryKey = [`pokemon-${id}`];
   const queryKey = [`pokemon-${id}`];
   const { isLoading, isError, data, error } = useQuery(queryKey, () => fetchPokemon(id as string), {
     staleTime: 60000,
