@@ -6,8 +6,8 @@ import { IPokemon } from "../types/pokemon";
 import pokeballImg from "../assets/img/pokeball.png";
 
 const EvolutionCard = ({ pokemon }: EvolutionCardProps) => {
-  const queryKey = [`pokemon-${pokemon.id}`];
-  const { isLoading, isError, data } = useQuery(queryKey, () => fetchPokemon(pokemon.id.toString()), {
+  const queryKey = [`pokemon-evo-${pokemon.id}`];
+  const { isLoading, isError, data } = useQuery(queryKey, () => fetchPokemon(pokemon.id), {
     staleTime: 60000,
   });
 
