@@ -31,9 +31,9 @@ You can use the Pokedex online from [there](https://pokedex-branda0.netlify.app/
 
 ## Snapshots
 
-<img  src="pokedex-react/src/assets/snapshots/desktop.png" alt="desktop-screenshot" height="280"/>
+<img  src="pokedex-react/src/assets/snapshots/desktop.png" alt="desktop-screenshot" height="310"/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img  height="300" src="pokedex-react/src/assets/snapshots/mobile1.png" alt="mobile1-screenshot" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img  height="300" src="pokedex-react/src/assets/snapshots/mobile1.png" alt="mobile1-screenshot" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="pokedex-react/src/assets/snapshots/mobile2.png" alt="mobile2-screenshot" height="300" />
 
 ---
