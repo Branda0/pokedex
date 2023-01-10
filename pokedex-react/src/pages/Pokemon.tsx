@@ -14,6 +14,11 @@ const Pokemon = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  //Scroll smoothly when rendering and data is already fetched => when he navigate beetween evolutions and already visited a pokemon
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  });
+
   let pokemon!: IPokemon;
   let needFetching: boolean = true;
 
@@ -57,14 +62,14 @@ const Pokemon = () => {
   }
 
   return (
-    <div className="flex flex-col flex-1 ">
+    <div className="flex flex-col flex-grow">
       <div className={`flex bg-${pokemon.types[0]}Light shadow-md`}>
         <PokemonHero pokemon={pokemon} />
       </div>
-      <div className="flex flex-col flex-1 w-full py-10 max-w-3xl px-6 sm:px-8 m-auto">
+      <div className="flex flex-col w-full py-10 max-w-3xl px-6 sm:px-8 m-auto">
         <PokemonDetails pokemon={pokemon} />
       </div>
-      <div className={`flex bg-${pokemon.types[0]}Light shadow-md`}>
+      <div className={`flex flex-auto flex-col bg-${pokemon.types[0]}Light shadow-md`}>
         <Evolutions pokemon={pokemon} />
       </div>
     </div>

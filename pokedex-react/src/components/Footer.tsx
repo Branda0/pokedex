@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="flex justify-center items-center mt-auto w-full bg-gray-100 ">
+    <footer className="flex justify-center items-center w-full bg-gray-100 ">
       <a
         href="https://github.com/Branda0/pokedex"
         target="_blank"

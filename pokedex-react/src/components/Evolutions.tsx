@@ -21,19 +21,19 @@ const Evolutions = ({ pokemon }: EvolutionsProps) => {
   }
 
   return (
-    <div className="w-full max-w-5xl px-4 pb-4 sm:px-16 m-auto justify-center items-center sm:flex-row sm:items-end sm:justify-around">
-      <div>
+    <div className="flex flex-grow flex-col w-full max-w-5xl px-4 pb-4 sm:px-16 m-auto ">
+      <p
+        className={`block  w-full py-2  my-4 text-3xl max-w-4xl m-auto border-b-2 font-semibold text-${pokemon.types[0]}Dark border-${pokemon.types[0]}Dark `}
+      >
+        Evolutions
+      </p>
+      {pokemonDetails.evolutions.length < 2 && (
         <p
-          className={`block w-full py-2  my-4 text-3xl max-w-4xl m-auto border-b-2 font-semibold text-${pokemon.types[0]}Dark border-${pokemon.types[0]}Dark `}
+          className={`w-full max-w-4xl m-auto align-middle font-semibold text-${pokemon.types[0]}Dark text-base`}
         >
-          Evolutions
+          This Pokemon does not evolve
         </p>
-        {pokemonDetails.evolutions.length < 2 && (
-          <p className={`max-w-4xl m-auto align-middle font-semibold text-${pokemon.types[0]}Dark text-base`}>
-            This Pokemon does not evolve
-          </p>
-        )}
-      </div>
+      )}
 
       <div className="flex flex-col justify-center items-center py-8 gap-3 sm:gap-4 sm:flex-row">
         {pokemonDetails.evolutions.map((evolution, index) => {
