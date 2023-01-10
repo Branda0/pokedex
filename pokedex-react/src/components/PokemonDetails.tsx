@@ -7,11 +7,15 @@ import { Loading, ProfessorOakMsg, DetailsStats } from "../components";
 const PokemonDetails = ({ pokemon }: PokemonDetailsProps) => {
   // fetch or access detail of the Pokemon
   const queryKey = [`details-${pokemon.id}`];
-  const { isLoading, isError, data, error } = useQuery(queryKey, () => fetchPokemonDetails(pokemon.id), {
+  const {
+    isLoading,
+    isError,
+    isSuccess,
+    data: pokemonDetails,
+    error,
+  } = useQuery(queryKey, () => fetchPokemonDetails(pokemon.id), {
     staleTime: 60000,
   });
-
-  const pokemonDetails = data as IPokemonDetails;
 
   if (isLoading) {
     return <Loading />;
@@ -33,12 +37,12 @@ const PokemonDetails = ({ pokemon }: PokemonDetailsProps) => {
     );
   }
 
-  return (
+  return isSuccess ? (
     <div className="flex flex-col">
       <p className="max-w-lg text-center self-center italic  mb-8  text-sm sm:ml-6 sm:self-start sm:text-base ">{`"${pokemonDetails.description}"`}</p>
       <DetailsStats pokemon={pokemon} pokemonDetails={pokemonDetails} />
     </div>
-  );
+  ) : null;
 };
 
 export default PokemonDetails;

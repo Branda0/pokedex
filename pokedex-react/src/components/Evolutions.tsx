@@ -9,14 +9,12 @@ import React from "react";
 const Evolutions = ({ pokemon }: EvolutionsProps) => {
   // fetch or access detail of the Pokemon
   const queryKey = [`details-${pokemon.id}`];
-  const { isLoading, isError, data } = useQuery(queryKey, () => fetchPokemonDetails(pokemon.id), {
+  const { isSuccess, data: pokemonDetails } = useQuery(queryKey, () => fetchPokemonDetails(pokemon.id), {
     staleTime: 60000,
   });
 
-  const pokemonDetails = data as IPokemonDetails;
-
   // isLoading and isError is already beeing processed by another component, no need to return some visual info from there
-  if (isLoading || isError) {
+  if (!isSuccess) {
     return null;
   }
 

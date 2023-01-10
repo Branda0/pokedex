@@ -17,22 +17,24 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
   const debouncedSearchValue = useDebounce(searchValue, 500);
   const queryKey = [`pokemons-${page}-${debouncedSearchValue}`];
 
-  const { isLoading, isError, isFetched, data, error } = useQuery(
-    queryKey,
-    () => fetchPokemons(page, debouncedSearchValue, POKEMONS_PER_PAGE),
-    {
-      staleTime: 60000,
-    }
-  );
+  const {
+    isLoading,
+    isError,
+    isSuccess,
+    data: pokemonListData,
+    error,
+  } = useQuery(queryKey, () => fetchPokemons(page, debouncedSearchValue, POKEMONS_PER_PAGE), {
+    staleTime: 60000,
+  });
 
   useEffect(() => {
-    if (!isLoading && data && data.count !== pokemonCount) {
+    if (!isLoading && pokemonListData && pokemonListData.count !== pokemonCount) {
       // Update the count if the data has changed
-      setPokemonCount(data.count);
+      setPokemonCount(pokemonListData.count);
     }
-  }, [data, pokemonCount, isLoading]);
+  }, [pokemonListData, pokemonCount, isLoading]);
 
-  const pokemonListData = data as IPokemonList;
+  // const pokemonListData = data!;
 
   if (isError) {
     console.log(error);
@@ -43,7 +45,7 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
     );
   }
 
-  if (isFetched && pokemonListData.data.length === 0) {
+  if (isSuccess && pokemonListData.data.length === 0) {
     return (
       <ProfessorOakMsg
         message={"I'm afraid that this pokemon doesn't exist in the national pokedex database ..."}
@@ -60,13 +62,13 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
       />
       {isLoading ? (
         <Loading />
-      ) : (
+      ) : isSuccess ? (
         <div className="grid grid-cols-1 gap-12 p-2 my-10 sm:grid-cols-2 md:grid-cols-3">
           {pokemonListData.data.map((pokemon: IPokemon) => (
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
         </div>
-      )}
+      ) : null}
       <Pagination
         setPage={setPage}
         currentPage={page}

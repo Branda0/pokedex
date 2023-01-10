@@ -7,11 +7,15 @@ import pokeballImg from "../assets/img/pokeball.png";
 
 const EvolutionCard = ({ pokemon }: EvolutionCardProps) => {
   const queryKey = [`pokemon-${pokemon.id}`];
-  const { isLoading, isError, data } = useQuery([queryKey], () => fetchPokemon(pokemon.id), {
+  const {
+    isLoading,
+    isError,
+    isSuccess,
+    data: pokemonData,
+  } = useQuery([queryKey], () => fetchPokemon(pokemon.id), {
     staleTime: 60000,
   });
 
-  const pokemonData = data as IPokemon;
   const state = {
     ...((isLoading || isError) && { pokemonFromCard: null }),
     ...(!isLoading && !isError && { pokemonFromCard: pokemonData }),
@@ -21,12 +25,12 @@ const EvolutionCard = ({ pokemon }: EvolutionCardProps) => {
     <div className="flex flex-col justify-center items-center">
       <Link
         className={`h-28 w-28 md:h-32 md:w-32  xl:w-36 xl:h-36 flex justify-center content-center bg-gray-100 border-4 transition-all duration-200 rounded-[50%] hover:rounded-[40%] ${
-          isError || isLoading ? "border-gray-800" : `border-${pokemonData.types[0]}Dark`
+          !isSuccess ? "border-gray-800" : `border-${pokemonData.types[0]}Dark`
         }`}
         to={`/pokemon/${pokemon.id}`}
         state={state}
       >
-        {isError || isLoading ? (
+        {!isSuccess ? (
           <img
             src={pokeballImg}
             className=" w-[30%] self-center object-contain group-hover:scale-110 duration-200"
@@ -43,7 +47,7 @@ const EvolutionCard = ({ pokemon }: EvolutionCardProps) => {
 
       <div
         className={`flex justify-center mt-4 content-center py-1 px-3 rounded-full text-sm md:text-base ${
-          isError || isLoading ? "bg-gray-500" : `bg-${pokemonData.types[0]}Dark`
+          !isSuccess ? "bg-gray-500" : `bg-${pokemonData.types[0]}Dark`
         }`}
       >
         <span className=" text-white capitalize md:text-sm ">{pokemon.name}</span>
