@@ -7,6 +7,7 @@ import {
   PokemonResultList,
   PokemonResultItem,
   PokemonDetails,
+  EvolutionItem,
 } from '../types/pokemon.types';
 
 @Injectable()
@@ -38,60 +39,66 @@ export class PokemonApiService {
   // Returns a list of pokemon api items using pagination
   async getPokemonList(props: GetPokemonsQuery): Promise<PokemonResultList> {
     const MAX_POKEMON = 905;
+    try {
+      // query response for search by id or name, we return filtered pokemons with pagination
+      if (props.pokemonId || props.pokemonName) {
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`,
+        );
+        const allPokemonList: PokemonApiItem[] = await response.data?.results;
 
-    // query response for search by id or name, we return filtered pokemons with pagination
-    if (props.pokemonId || props.pokemonName) {
+        let filteredSearch: PokemonResultItem[];
+
+        // filtered by exact id
+        if (props.pokemonId) {
+          filteredSearch = allPokemonList.reduce(
+            (arr: PokemonResultItem[], pokemon) => {
+              const urlId = pokemon.url.match(/(?<=\/)\d+(?=\/)/g)[0];
+              if (Number(urlId) === props.pokemonId)
+                arr.push({ name: pokemon.name, id: Number(urlId) });
+              return arr;
+            },
+            [],
+          );
+        }
+
+        // filtered by name
+        else {
+          filteredSearch = allPokemonList.reduce(
+            (arr: PokemonResultItem[], pokemon: PokemonApiItem) => {
+              const urlId = pokemon.url.match(/(?<=\/)\d+(?=\/)/g)[0];
+              if (pokemon.name.includes(props.pokemonName))
+                arr.push({ name: pokemon.name, id: Number(urlId) });
+              return arr;
+            },
+            [],
+          );
+        }
+
+        return {
+          count: filteredSearch.length,
+          result: filteredSearch.slice(
+            props.offset,
+            props.offset + props.limit,
+          ),
+        };
+      }
+
+      // no search id or name given, we return all pokemon with pagination
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`,
+        `https://pokeapi.co/api/v2/pokemon?limit=${props.limit}&offset=${props.offset}`,
       );
-      const allPokemonList: PokemonApiItem[] = await response.data?.results;
-
-      let filteredSearch: PokemonResultItem[];
-
-      // filtered by exact id
-      if (props.pokemonId) {
-        filteredSearch = allPokemonList.reduce(
-          (arr: PokemonResultItem[], pokemon) => {
-            const urlId = pokemon.url.match(/(?<=\/)\d+(?=\/)/g)[0];
-            if (Number(urlId) === props.pokemonId)
-              arr.push({ name: pokemon.name, id: Number(urlId) });
-            return arr;
-          },
-          [],
-        );
-      }
-
-      // filtered by name
-      else {
-        filteredSearch = allPokemonList.reduce(
-          (arr: PokemonResultItem[], pokemon: PokemonApiItem) => {
-            const urlId = pokemon.url.match(/(?<=\/)\d+(?=\/)/g)[0];
-            if (pokemon.name.includes(props.pokemonName))
-              arr.push({ name: pokemon.name, id: Number(urlId) });
-            return arr;
-          },
-          [],
-        );
-      }
 
       return {
-        count: filteredSearch.length,
-        result: filteredSearch.slice(props.offset, props.offset + props.limit),
+        count: MAX_POKEMON,
+        result: response.data?.results.map((pokemon: PokemonApiItem) => {
+          const urlId = pokemon.url.match(/(?<=\/)\d+(?=\/)/g)[0];
+          return { name: pokemon.name, id: Number(urlId) };
+        }),
       };
+    } catch (error) {
+      throw new Error(`Error fetching PokemonList  ${error.message}`);
     }
-
-    // no search id or name given, we return all pokemon with pagination
-    const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=${props.limit}&offset=${props.offset}`,
-    );
-
-    return {
-      count: MAX_POKEMON,
-      result: response.data?.results.map((pokemon: PokemonApiItem) => {
-        const urlId = pokemon.url.match(/(?<=\/)\d+(?=\/)/g)[0];
-        return { name: pokemon.name, id: Number(urlId) };
-      }),
-    };
   }
 
   // Returns a Pokemon sets of details given its ID
@@ -102,13 +109,7 @@ export class PokemonApiService {
       );
       const pokemonDetails = responseDetails.data;
 
-      interface evoItem {
-        name: string;
-        id: number;
-      }
-
-      // let pokemonEvolutions: Array<evoItem | evoItem[]> = [];
-      let pokemonEvolutions: any = [];
+      let pokemonEvolutions: Array<EvolutionItem | EvolutionItem[]> = [];
 
       if (pokemonDetails.evolution_chain) {
         const responseEvolutions = await axios.get(
@@ -120,23 +121,28 @@ export class PokemonApiService {
         pokemonEvolutions.push(
           {
             name: pokemonDetails.evolves_from_species.name,
-            id: Number(
-              pokemonDetails.evolves_from_species.url.match(
-                /(?<=\/)\d+(?=\/)/g,
-              )[0],
-            ),
+            id: pokemonDetails.evolves_from_species.url.match(
+              /(?<=\/)\d+(?=\/)/g,
+            )[0],
           },
           {
             name: pokemonDetails.name,
-            id: pokemonDetails.id,
+            id: pokemonDetails.id.toString(),
           },
         );
+      } else {
+        pokemonEvolutions.push({
+          name: pokemonDetails.name,
+          id: pokemonDetails.id.toString(),
+        });
       }
 
       console.log(pokemonEvolutions);
 
       return {
-        description: pokemonDetails.flavor_text_entries[0]?.flavor_text,
+        description: pokemonDetails?.flavor_text_entries?.find(
+          (entrie: any) => entrie.language.name === 'en',
+        )?.flavor_text,
         habitat: pokemonDetails.habitat?.name,
         shape: pokemonDetails.shape?.name,
         evolutions: pokemonEvolutions,
@@ -150,13 +156,13 @@ export class PokemonApiService {
     function extractEvolution(chain: any) {
       const evolutions = {
         name: chain.species.name,
-        id: Number(chain.species.url.match(/(?<=\/)\d+(?=\/)/g)[0]),
+        id: chain.species.url.match(/(?<=\/)\d+(?=\/)/g)[0],
       };
 
       if (chain.evolves_to && chain.evolves_to.length > 0) {
         if (chain.evolves_to.length > 1) {
           return [
-            [evolutions],
+            evolutions,
 
             chain.evolves_to
               .map((evolution: any) => extractEvolution(evolution))

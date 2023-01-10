@@ -25,7 +25,7 @@ export interface PokemonDetails {
 
 export interface EvolutionItem {
   name: string;
-  id: number;
+  id: string;
 }
 
 //proporties of pokemon list returned from pokemon api service getPokemonList
