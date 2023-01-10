@@ -7,7 +7,7 @@ const StatsRow = ({ stats }: StatsRowProps) => {
         return (
           <div key={index} className="flex flex-row items-center">
             <span className=" w-20 capitalize text-gray-400">{stat.name}</span>
-            <div className="flex flex-1 flex-wrap gap-4 gap-x-8">
+            <div className="flex flex-1 flex-wrap gap-y-4 gap-x-8">
               {stat.value instanceof Array ? (
                 stat.value.map((statItem, index) => {
                   return (
