@@ -1,11 +1,11 @@
+import { useQuery } from "react-query";
 import { IPokemonDetails } from "../types/pokemon";
 import { PokemonDetailsProps } from "../props";
 import { fetchPokemonDetails } from "../fetchs/fetch-pokemon";
 import { Loading, ProfessorOakMsg, DetailsStats } from "../components";
-import { useQuery } from "react-query";
 
 const PokemonDetails = ({ pokemon }: PokemonDetailsProps) => {
-  // fetch detail of the Pokemon
+  // fetch or access detail of the Pokemon
   const queryKey = [`details-${pokemon.id}`];
   const { isLoading, isError, data, error } = useQuery(queryKey, () => fetchPokemonDetails(pokemon.id), {
     staleTime: 60000,

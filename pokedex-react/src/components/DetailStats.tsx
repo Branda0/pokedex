@@ -1,4 +1,4 @@
-import { DetailStatsProps, StatsRowProps } from "../props";
+import { DetailStatsProps } from "../props";
 import StatsRow from "./StatsRow";
 
 const DetailsStats = ({ pokemon, pokemonDetails }: DetailStatsProps) => {
