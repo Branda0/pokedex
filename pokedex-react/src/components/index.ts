@@ -12,6 +12,8 @@ import PokemonHero from "./PokemonHero";
 import PokemonDetails from "./PokemonDetails";
 import DetailsStats from "./DetailStats";
 import StatsRow from "./StatsRow";
+import Evolutions from "./Evolutions";
+import EvolutionCard from "./EvolutionCard";
 
 export {
   Header,
@@ -28,4 +30,6 @@ export {
   PokemonDetails,
   DetailsStats,
   StatsRow,
+  Evolutions,
+  EvolutionCard,
 };

@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { PokemonHero, Loading, ProfessorOakMsg, PokemonDetails } from "../components";
+import { PokemonHero, Loading, ProfessorOakMsg, PokemonDetails, Evolutions } from "../components";
 import { fetchPokemon } from "../fetchs/fetch-pokemon";
 import { IPokemon } from "../types/pokemon";
 
@@ -63,6 +63,9 @@ const Pokemon = () => {
       </div>
       <div className="flex flex-col flex-1 w-full py-10 max-w-3xl px-6 sm:px-8 m-auto">
         <PokemonDetails pokemon={pokemon} />
+      </div>
+      <div className={`flex bg-${pokemon.types[0]}Light shadow-md`}>
+        <Evolutions pokemon={pokemon} />
       </div>
     </div>
   );

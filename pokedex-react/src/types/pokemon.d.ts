@@ -10,12 +10,17 @@ export interface IPokemon {
 
 export interface IPokemonList {
   count: number;
-  data: Pokemon[];
+  data: IPokemon[];
 }
 
 export interface IPokemonDetails {
   description: string;
   habitat: string;
   shape: string;
-  evolutions: any[]; // need todefine evolution format
+  evolutions: Array<IEvolutionItem | IEvolutionItem[]>; // need todefine evolution format
+}
+
+export interface IEvolutionItem {
+  name: string;
+  id: string;
 }
