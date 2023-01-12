@@ -116,8 +116,13 @@ export class PokemonApiService {
           pokemonDetails.evolution_chain.url,
         );
         const dataEvolutions = responseEvolutions.data;
+        console.log('Evolutions chain');
+        console.log(dataEvolutions);
+        console.log(dataEvolutions.evolves_to);
+
         pokemonEvolutions = extractEvolution(dataEvolutions.chain);
       } else if (pokemonDetails.evolves_from_species) {
+        console.log('evolves From');
         pokemonEvolutions.push(
           {
             name: pokemonDetails.evolves_from_species.name,
@@ -154,6 +159,8 @@ export class PokemonApiService {
     }
 
     function extractEvolution(chain: any) {
+      console.log('extractEvol with');
+      console.log({ chain });
       const evolutions = {
         name: chain.species.name,
         id: chain.species.url.match(/(?<=\/)\d+(?=\/)/g)[0],
@@ -163,7 +170,6 @@ export class PokemonApiService {
         if (chain.evolves_to.length > 1) {
           return [
             evolutions,
-
             chain.evolves_to
               .map((evolution: any) => extractEvolution(evolution))
               .flat(),
@@ -171,7 +177,6 @@ export class PokemonApiService {
         } else {
           return [
             [evolutions],
-
             chain.evolves_to
               .map((evolution: any) => extractEvolution(evolution))
               .flat(),
