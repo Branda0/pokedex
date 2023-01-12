@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import useDebounce from "../hooks/useDebounce";
-import { IPokemon, IPokemonList } from "../types/pokemon";
+import { IPokemon } from "../types/pokemon";
 import { PokemonCard, Pagination, Loading, ProfessorOakMsg } from "../components";
 import { fetchPokemons } from "../fetchs/fetch-pokemon";
 import { PokemonsGridProps } from "../props";
@@ -35,6 +35,7 @@ const PokemonsGrid = ({ searchValue, page, setPage }: PokemonsGridProps) => {
   }, [pokemonListData, pokemonCount, isLoading]);
 
   // const pokemonListData = data!;
+  console.log({ pokemonListData });
 
   if (isError) {
     console.log(error);
