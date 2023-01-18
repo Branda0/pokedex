@@ -16,7 +16,7 @@ export class PokemonApiService {
   async getPokemon(pokemonId: number): Promise<Pokemon> {
     try {
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${pokemonId}`,
+        `${process.env.API_URL}/pokemon/${pokemonId}`,
       );
       const pokemonData = response.data;
 
@@ -38,12 +38,11 @@ export class PokemonApiService {
 
   // Returns a list of pokemon api items using pagination
   async getPokemonList(props: GetPokemonsQuery): Promise<PokemonResultList> {
-    const MAX_POKEMON = 905;
     try {
       // query response for search by id or name, we return filtered pokemons with pagination
       if (props.pokemonId || props.pokemonName) {
         const response = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`,
+          `${process.env.API_URL}/pokemon?limit=${process.env.MAX_POKEMON}`,
         );
         const allPokemonList: PokemonApiItem[] = await response.data?.results;
 
@@ -86,11 +85,11 @@ export class PokemonApiService {
 
       // no search id or name given, we return all pokemon with pagination
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=${props.limit}&offset=${props.offset}`,
+        `${process.env.API_URL}/pokemon?limit=${props.limit}&offset=${props.offset}`,
       );
 
       return {
-        count: MAX_POKEMON,
+        count: Number(process.env.MAX_POKEMON),
         result: response.data?.results.map((pokemon: PokemonApiItem) => {
           const urlId = pokemon.url.match(/(?<=\/)\d+(?=\/)/g)[0];
           return { name: pokemon.name, id: Number(urlId) };
@@ -105,7 +104,7 @@ export class PokemonApiService {
   async getPokemonDetails(pokemonId: number): Promise<PokemonDetails> {
     try {
       const responseDetails = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`,
+        `${process.env.API_URL}/pokemon-species/${pokemonId}`,
       );
       const pokemonDetails = responseDetails.data;
 
