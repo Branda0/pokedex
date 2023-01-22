@@ -8,6 +8,6 @@ export class CreateTrainerCommand {
   constructor(props: CreateTrainerHashedRequestDto) {
     this.email = props.email;
     this.userName = props.userName;
-    this.hashPassword = props.hash;
+    this.hashPassword = props.hashPassword;
   }
 }

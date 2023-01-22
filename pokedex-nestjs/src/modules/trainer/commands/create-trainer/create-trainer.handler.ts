@@ -1,7 +1,7 @@
 import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
 import { Result } from 'src/shared/result.type';
-import { TrainerEntity } from 'src/trainer/domain/trainer.entity';
-import { TrainerRepository } from 'src/trainer/domain/trainer.repository';
+import { TrainerEntity } from 'src/modules/trainer/domain/trainer.entity';
+import { TrainerRepository } from 'src/modules/trainer/domain/trainer.repository';
 import { CreateTrainerCommand } from './create-trainer.command';
 import { CreateTrainerResponseDto } from './create-trainer.dtos';
 

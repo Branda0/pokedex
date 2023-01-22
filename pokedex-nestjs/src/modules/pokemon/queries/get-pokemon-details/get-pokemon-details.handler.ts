@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetPokemonDetailsQuery } from './get-pokemon-details.query';
-import { PokemonApiService } from 'src/pokemon/api/pokemon.api.service';
-import { PokemonDetails } from 'src/pokemon/types/pokemon.types';
+import { PokemonApiService } from 'src/modules/pokemon/api/pokemon.api.service';
+import { PokemonDetails } from 'src/modules/pokemon/types/pokemon.types';
 
 @QueryHandler(GetPokemonDetailsQuery)
 export class GetPokemonDetailsHandler

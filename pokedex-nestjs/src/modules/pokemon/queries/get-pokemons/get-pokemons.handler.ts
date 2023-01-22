@@ -1,10 +1,10 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetPokemonsQuery } from './get-pokemons.query';
-import { PokemonApiService } from 'src/pokemon/api/pokemon.api.service';
+import { PokemonApiService } from 'src/modules/pokemon/api/pokemon.api.service';
 import {
   PokemonList,
   PokemonResultList,
-} from 'src/pokemon/types/pokemon.types';
+} from 'src/modules/pokemon/types/pokemon.types';
 
 @QueryHandler(GetPokemonsQuery)
 export class GetPokemonsHandler implements IQueryHandler<GetPokemonsQuery> {

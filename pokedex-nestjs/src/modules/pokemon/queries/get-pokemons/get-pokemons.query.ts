@@ -1,4 +1,4 @@
-import { GetPokemonsDto } from 'src/pokemon/dto/getPokemons.dto';
+import { GetPokemonsDto } from 'src/modules/pokemon/dto/getPokemons.dto';
 
 export class GetPokemonsQuery {
   limit: number;

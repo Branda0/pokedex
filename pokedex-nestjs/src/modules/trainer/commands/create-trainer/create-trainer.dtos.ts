@@ -20,7 +20,7 @@ export class CreateTrainerRequestDto {
 export class CreateTrainerHashedRequestDto {
   readonly email: string;
   readonly userName: string;
-  readonly hash: string;
+  readonly hashPassword: string;
 }
 
 export class CreateTrainerResponseDto {
