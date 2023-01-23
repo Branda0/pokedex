@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { hash } from 'argon2';
 import { CommandBus } from '@nestjs/cqrs';
-import { Result } from 'src/shared/result.type';
+import { Result } from 'src/lib/result.type';
 
 import {
   CreateTrainerRequestDto,
