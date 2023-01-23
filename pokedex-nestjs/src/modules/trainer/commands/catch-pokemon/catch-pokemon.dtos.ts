@@ -10,5 +10,5 @@ export class CatchPokemonRequestDto {
 }
 
 export class CatchPokemonResponseDto {
-  readonly id: number;
+  readonly catchedPokemons: number[];
 }
