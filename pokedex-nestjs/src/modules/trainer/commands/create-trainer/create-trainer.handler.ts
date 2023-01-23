@@ -1,7 +1,8 @@
 import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
-import { Result } from 'src/shared/result.type';
+import { Result } from 'src/lib/result.type';
 import { TrainerEntity } from 'src/modules/trainer/domain/trainer.entity';
-import { TrainerRepository } from 'src/modules/trainer/domain/trainer.repository';
+import { TrainerRepository } from 'src/modules/trainer/repository/trainer.repository';
+import { TrainerMapper } from '../../trainer.mapper';
 import { CreateTrainerCommand } from './create-trainer.command';
 import { CreateTrainerResponseDto } from './create-trainer.dtos';
 
@@ -14,19 +15,18 @@ export class CreateTrainerHandler
   async execute(
     command: CreateTrainerCommand,
   ): Promise<Result<CreateTrainerResponseDto, string>> {
-    const trainerEntity = TrainerEntity.create(command);
-    console.log('created trainer :', trainerEntity);
+    const trainer = TrainerEntity.create(command);
 
-    const trainerRecord = await this.repository.findOneByEmail(command.email);
+    const trainerEntity = await this.repository.findOneByEmail(command.email);
 
-    if (trainerRecord)
+    if (trainerEntity)
       return { status: 'err', data: 'Trainer credentials already exists' };
 
     const newTrainer = await this.repository.insert(
-      trainerEntity,
+      trainer,
       command.hashPassword,
     );
 
-    return { status: 'ok', data: { id: newTrainer.id } };
+    return { status: 'ok', data: { id: newTrainer.getId() } };
   }
 }
