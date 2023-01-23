@@ -5,6 +5,7 @@ import { GetPokemonsHandler } from './queries/get-pokemons/get-pokemons.handler'
 import { GetPokemonHandler } from './queries/get-pokemon/get-pokemon.handler';
 import { GetPokemonDetailsHandler } from './queries/get-pokemon-details/get-pokemon-details.handler';
 import { PokemonApiService } from './api/pokemon.api.service';
+import { PokemonMapper } from './pokemon.mapper';
 
 @Module({
   imports: [CqrsModule],
@@ -14,6 +15,7 @@ import { PokemonApiService } from './api/pokemon.api.service';
     GetPokemonHandler,
     GetPokemonDetailsHandler,
     PokemonApiService,
+    PokemonMapper,
   ],
 })
 export class PokemonModule {}

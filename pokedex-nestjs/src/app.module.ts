@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { PokemonModule } from './pokemon/pokemon.module';
-import { PrismaModule } from './prisma/prisma.module';
-import { TrainerModule } from './trainer/trainer.module';
+import { PokemonModule } from './modules/pokemon/pokemon.module';
+import { PrismaModule } from './modules/prisma/prisma.module';
+import { TrainerModule } from './modules/trainer/trainer.module';
 
 @Module({
   imports: [PokemonModule, PrismaModule, TrainerModule],
