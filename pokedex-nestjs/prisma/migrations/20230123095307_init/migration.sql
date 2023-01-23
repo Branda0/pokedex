@@ -5,7 +5,7 @@ CREATE TABLE "Trainer" (
     "email" TEXT NOT NULL,
     "userName" TEXT NOT NULL,
     "hash" TEXT NOT NULL,
-    "catchedPokemons" JSONB[],
+    "catchedPokemons" INTEGER[],
 
     CONSTRAINT "Trainer_pkey" PRIMARY KEY ("id")
 );
